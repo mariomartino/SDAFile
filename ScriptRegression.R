@@ -349,3 +349,94 @@ validationplot(pcrEmotionalMotivation, val.type = 'MSEP')
 pcrPredEmotionalMotivation=predict(pcrEmotionalMotivation, Test, ncomp=6)
 pcrMseEmotionalMotivation = mse_func(Test$Y_EmotionalMotivation, pcrPredEmotionalMotivation)
 
+# KNN Regressor
+
+install.packages('caret')
+library(caret)
+
+# Searching for the best K 
+
+u=c()
+temp=c()
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_Dehydration, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_Dehydration, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelDehydration = knnreg(X_train, Y_train$Y_Dehydration, k=best_k)  
+PredDehydration = predict(modelDehydration, X_test)   
+mseTest_Dehydration=mse_func(Y_test$Y_Dehydration, PredDehydration)
+
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_Hyperthermia, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_Hyperthermia, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelHyperthermia = knnreg(X_train, Y_train$Y_Hyperthermia, k=best_k)  
+PredHyperthermia = predict(modelHyperthermia, X_test)   
+mseTest_Hyperthermia=mse_func(Y_test$Y_Hyperthermia, PredHyperthermia)
+
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_AvgSpeed, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_AvgSpeed, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelAvgSpeed = knnreg(X_train, Y_train$Y_AvgSpeed, k=best_k)  
+PredAvgSpeed = predict(modelAvgSpeed, X_test)   
+mseTest_AvgSpeed=mse_func(Y_test$Y_AvgSpeed, PredAvgSpeed)
+
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_AvgTravelledDistance, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_AvgTravelledDistance, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelAvgTravelledDistance = knnreg(X_train, Y_train$Y_AvgTravelledDistance, k=best_k)  
+PredAvgTravelledDistance = predict(modelAvgTravelledDistance, X_test)   
+mseTest_AvgTravelledDistance=mse_func(Y_test$Y_AvgTravelledDistance, PredAvgTravelledDistance)
+
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_PressingCapability, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_PressingCapability, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelPressingCapability = knnreg(X_train, Y_train$Y_PressingCapability, k=best_k)  
+PredPressingCapability = predict(modelPressingCapability, X_test)   
+mseTest_PressingCapability=mse_func(Y_test$Y_PressingCapability, PredPressingCapability)
+
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_PhysicalEndurance, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_PhysicalEndurance, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelPhysicalEndurance = knnreg(X_train, Y_train$Y_PhysicalEndurance, k=best_k)  
+PredPhysicalEndurance = predict(modelPhysicalEndurance, X_test)   
+mseTest_PhysicalEndurance=mse_func(Y_test$Y_PhysicalEndurance, PredPhysicalEndurance)
+
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_MentalConcentration, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_MentalConcentration, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelMentalConcentration = knnreg(X_train, Y_train$Y_MentalConcentration, k=best_k)  
+PredMentalConcentration = predict(modelMentalConcentration, X_test)   
+mseTest_MentalConcentration=mse_func(Y_test$Y_MentalConcentration, PredMentalConcentration)
+
+for (i in 1:20)
+{
+  temp = knnreg(X_train, Y_train$Y_EmotionalMotivation, k=i) #KNN model fitting (iteration)
+  u[i]=c(mse_func(Y_test$Y_EmotionalMotivation, predict(temp, X_test)))
+}
+best_k=which.min(u)
+modelEmotionalMotivation = knnreg(X_train, Y_train$Y_EmotionalMotivation, k=best_k)  
+PredEmotionalMotivation = predict(modelEmotionalMotivation, X_test)   
+mseTest_EmotionalMotivation=mse_func(Y_test$Y_EmotionalMotivation, PredEmotionalMotivation)
+
+
+

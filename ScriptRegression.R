@@ -1,4 +1,4 @@
-setwd('/Users/marti/Documents/Mario/LEZIONI Universit‡/Magistrale/Statistical Data Analysis/Progetto')
+setwd('/Users/marti/Documents/Mario/LEZIONI Universit√†/Magistrale/Statistical Data Analysis/Progetto')
 myds=read.csv('RegressionData_SDA_IZ_group2.csv')
 
 # Defining functions we'll use for our project
@@ -353,6 +353,12 @@ pcrMseEmotionalMotivation = mse_func(Test$Y_EmotionalMotivation, pcrPredEmotiona
 
 install.packages('caret')
 library(caret)
+
+X_train = as.data.frame(scale(X_train))
+Y_train = as.data.frame(scale(Y_train))
+
+X_test = as.data.frame(scale(X_test))
+Y_test = as.data.frame(scale(Y_test))
 
 # Searching for the best K 
 
